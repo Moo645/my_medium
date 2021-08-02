@@ -12,12 +12,9 @@
 
   <body>
     <%= render 'shared/frontend/navbar' %>
-
+    <%= render 'shared/frontend/flash' if notice %>
 
       <%= yield %>
-      
-    <div class="container">
-    </div>
 
   </body>
 </html>

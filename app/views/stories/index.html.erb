@@ -9,7 +9,7 @@
       <p>
         最後編輯時間：<%= time_ago_in_words(s.updated_at) %> ago
         <%= link_to "編輯故事", edit_story_path(s), class: 'button is-primary is-small' %>
-        <%= link_to "刪除故事", story_path(s), class: 'button is-danger is-small', data:{confirm:'確認刪除?!'} %>
+        <%= link_to "刪除故事", story_path(s), method: 'delete', class: 'button is-danger is-small', data:{confirm:'確認刪除?!'} %>
       </p>
       <hr>
     </div>
