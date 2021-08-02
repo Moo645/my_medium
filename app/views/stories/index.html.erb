@@ -1,0 +1,20 @@
+
+<div class="container">
+  <h1 class="title">you are in storis#index</h1>
+  <h1 class="title">故事列表</h1>
+  <% @stories.each do |s| %>
+    <div class="content">
+      <h2 class="title"><%= s.title %></h2>
+      <p><%= s.content %></p>
+      <p>
+        最後編輯時間：<%= time_ago_in_words(s.updated_at) %> ago
+        <%= link_to "編輯故事", edit_story_path(s), class: 'button is-primary is-small' %>
+        <%= link_to "刪除故事", story_path(s), class: 'button is-danger is-small', data:{confirm:'確認刪除?!'} %>
+      </p>
+      <hr>
+    </div>
+
+  <%end%>  
+  </div>
+
+</div>
