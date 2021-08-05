@@ -4,7 +4,12 @@
   <h1 class="title">故事列表</h1>
   <% @stories.each do |s| %>
     <div class="content">
-      <h2 class="title"><%= s.title %></h2>
+      <h2 class="title">
+        <%= link_to s.title, edit_story_path(s), class: 'has-text-grey-darker' %> 
+        <%= content_tag :span, s.status, class: 'tag is-info is-medium is-warning' if s.draft? %>
+        <%= content_tag :span, s.status, class: 'tag is-info is-medium 'if s.published?%>
+      </h2>
+
       <p><%= s.content %></p>
       <p>
         最後編輯時間：<%= time_ago_in_words(s.updated_at) %> ago

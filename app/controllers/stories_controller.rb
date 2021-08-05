@@ -13,25 +13,44 @@ class StoriesController < ApplicationController
 
   def create
     @story = current_user.stories.new(story_params)
+    # @story.publish! if params[:publish]
     if @story.save
-        redirect_to stories_path, notice: '草稿存檔成功!'
+      @story.publish! if params[:publish]
+      if @story.published?
+        redirect_to stories_path, notice: '故事已發布!'
+      else
+        redirect_to edit_story_path(@story), notice: '草稿已儲存!'
+      end
     else
-        render :new
+      render :new, notice: '發生錯誤!'
     end
+
   end
 
   def edit
+    # @story = current_user.stories.new(story_params)
+
   end
+
 
   def update
     if @story.update(story_params)
-      redirect_to stories_path, notice: '草稿更新成功!'
-    else
-      render :edit
+
+      case
+        when params[:unpublish]
+          @story.unpublish!
+          redirect_to stories_path, notice: '故事已下架!'
+        when params[:publish]
+          @story.publish!
+          redirect_to stories_path, notice: '故事已發佈!'
+        else
+          redirect_to edit_story_path(@story), notice: '故事已更新!'
+      end
     end
   end
 
   def destroy
+    @story.delete!
     @story.destroy
     redirect_to stories_path, notice: '故事刪除成功'
   end
