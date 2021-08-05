@@ -28,7 +28,6 @@ class StoriesController < ApplicationController
   end
 
   def edit
-    # @story = current_user.stories.new(story_params)
 
   end
 
@@ -60,7 +59,7 @@ class StoriesController < ApplicationController
   private
   
   def find_story
-    @story = current_user.stories.find(params[:id])
+    @story = current_user.stories.friendly.find(params[:id])
   end
 
   def story_params
