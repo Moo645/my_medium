@@ -1,7 +1,16 @@
 
 <div class="container">
-  <h1 class="title">you are in storis#index</h1>
-  <h1 class="title">故事列表</h1>
+  <div class="level">
+    <div class="level-left">
+      <div class="title is-large">故事列表</div>
+    </div>
+    <div class="level-rigrt">
+      <%= link_to '新增故事', new_story_path, class: 'button is-medium is-primary has-text-black' %>
+    </div>
+  </div>
+
+  <hr>
+  
   <% @stories.each do |s| %>
     <div class="content">
       <h2 class="title">

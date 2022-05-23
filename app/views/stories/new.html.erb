@@ -1,5 +1,12 @@
 <div class="container">
-  <h1 class="title">You are in stories#new</h1>   
-  <h1 class="title">新增故事</h1>
+  <div class="level">
+    <div class="level-left">
+      <div class="title is-large">新增故事</div>
+    </div>
+    <div class="level-rigrt">
+      <%= link_to '故事列表', stories_path, class: 'button is-medium is-primary has-text-black' %>
+    </div>
+  </div>
+  <hr>
   <%= render 'form', story: @story %>
 </div>
