@@ -16,10 +16,18 @@
     <%= f.text_field :username, class: 'input' %>
   </div>
 
-    <div class="field">
+  <div class="field">
     <%= f.label :intro, class: 'label' %>
     <%= f.text_area :intro, class: 'textarea', rows: 5 %>
   </div>
+
+  <div class="field">
+    <%= f.label :avatar, class: 'label' %>
+    <%= f.file_field :avatar %>
+    <%  %>
+  </div>
+    <%= image_tag current_user.avatar.variant(resize: '250x250') if current_user.avatar.attached? %>
+
 
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
