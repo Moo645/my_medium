@@ -5,6 +5,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :stories 
+  resources :stories
+
+  # /@username/story-123
+  get '/@:username/:story_id', to: 'pages#show', as: 'story_page'
+  # /@username
+  get '/@:username', to: 'pages#user', as: 'user_page'
 
 end
