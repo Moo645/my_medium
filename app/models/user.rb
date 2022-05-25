@@ -6,9 +6,6 @@ class User < ApplicationRecord
   has_many :stories, dependent: :destroy
   validates :username, presence: true, uniqueness: true
 
-  has_one_attached :avatar do |attachable|
-    attachable.variant :profile_avatar, resize_to_limit: [200, 200]
-    attachable.variant :navbar_avatar, resize_to_limit: [50, 50]
-  end
+  has_one_attached :avatar 
 
 end
