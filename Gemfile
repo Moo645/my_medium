@@ -33,6 +33,7 @@ gem 'aasm', '~> 4.11'
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 gem 'babosa', '~> 2.0'
 gem 'foreman'
+gem 'paranoia', '~> 2.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

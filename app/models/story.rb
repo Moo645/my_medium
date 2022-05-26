@@ -1,4 +1,5 @@
 class Story < ApplicationRecord
+  acts_as_paranoid
   include StoryStateMachine
   extend FriendlyId
   friendly_id :slug_candidate, use: :slugged
@@ -16,10 +17,6 @@ class Story < ApplicationRecord
   # scope :story_show, ->{ Story.friendly.find(params[:story_id]) }
 
   # instance methods
-  def destroy
-    update(deleted_at: Time.now)
-  end
-
   # babosa init / Using Babosa With FriendlyId 4+
   def normalize_friendly_id(input)
     input.to_s.to_slug.normalize(transliterations: :russian).to_s

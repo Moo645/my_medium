@@ -79,19 +79,20 @@
         
       <% @stories.each do |s| %>
         <article class="media">
-          <div class="media-content">
+          <div class="media-content has-article-list">
             <h2 class="title is-4">
               <%= link_to s.title, story_page_path(s.user.username, s), class: 'has-text-grey-dark' %>
             </h2>
             <p class="content"><%= simple_format(strip_tags(s.content).truncate(200, separator: ' ', omission: " ... #{read_more(s)}")) %></p>
-            <footer>
-              <p><%= link_to "@#{s.user.username}", user_page_path(s.user.username) %> | Story at <%= time_ago_in_words(s.created_at) %> ago</p>
-            </footer>
+
           </div>
           <figure class="media-right">
-            <%= cover_image(s, size: [150, 150]) %>
+            <%= cover_image(s, size: [250, 250]) %>
           </figure>
         </article>
+
+        <p><%= link_to "@#{s.user.username}", user_page_path(s.user.username) %> | Story at <%= time_ago_in_words(s.created_at) %> ago</p>
+        <hr>
       <% end %>  
         
       </section>
