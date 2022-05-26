@@ -5,12 +5,15 @@ class Story < ApplicationRecord
 
   # Relationships
   belongs_to :user
+  has_one_attached :cover_image
 
   # validations
   validates :title, presence: true
 
   # Scopes
   default_scope { where(deleted_at: nil) }
+  scope :published_stories, -> { published.with_attached_cover_image.order(created_at: :desc).includes(:user) }
+  # scope :story_show, ->{ Story.friendly.find(params[:story_id]) }
 
   # instance methods
   def destroy
