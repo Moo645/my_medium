@@ -8,7 +8,9 @@ Rails.application.config.assets.version = '1.0'
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Add vendor/assets/* folder to the asset load path.
-Rails.application.config.assets.paths += Dir["#{Rails.root}/vendor/assets/*"]
+
+# 用 webpacker 替代 assets pipeline
+# Rails.application.config.assets.paths += Dir["#{Rails.root}/vendor/assets/*"]
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
