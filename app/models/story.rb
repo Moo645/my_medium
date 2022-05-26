@@ -1,33 +1,18 @@
 class Story < ApplicationRecord
+  include StoryStateMachine
   extend FriendlyId
   friendly_id :slug_candidate, use: :slugged
 
-  include AASM
-
+  # Relationships
   belongs_to :user
+
+  # validations
   validates :title, presence: true
 
-  # 讓story的ORM搜尋都吃到這個條件
+  # Scopes
   default_scope { where(deleted_at: nil) }
 
-  aasm column: 'status', no_direct_assignment: true do
-    state :draft, initial: true
-    state :published, :deleted
-
-    event :publish do
-      transitions from: :draft, to: :published
-    end
-
-    event :unpublish do
-      transitions from: :published, to: :draft
-    end
-
-    event :delete do
-      transitions from: [:draft, :published], to: :deleted
-    end
-  end
-
-  # 把destory方法覆寫成更新deleted_at欄位
+  # instance methods
   def destroy
     update(deleted_at: Time.now)
   end
@@ -38,6 +23,7 @@ class Story < ApplicationRecord
   end
 
   private
+
   def slug_candidate
     [
       :title,
