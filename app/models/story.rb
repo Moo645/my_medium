@@ -8,7 +8,7 @@ class Story < ApplicationRecord
 
   # Relationships
   belongs_to :user
-  has_many :comment
+  has_many :comments
   has_one_attached :cover_image
 
   # validations

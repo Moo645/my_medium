@@ -1,9 +1,9 @@
-<% if user_signed_in? %>
 <section class="comment-editor">
-  <form action="" method="post">
-    <textarea name="" id="" rows="8" cols="40" class="textarea is-small"></textarea>
-    <button type="submit" class="button is-primary is-fullwidth">送出</button>
-  </form>
+<% if user_signed_in? %>
+  <%= form_with model: comment, url: story_comments_path(story), remote: true do |f| %>
+    <%= f.text_area :content, rows: 8, class: "textarea is-small" %>
+    <%= f.button '送出', class: "button is-primary is-fullwidth" %>
+  <% end %>
   <% else %>
     <p> Want to comment? </p>
     <%= link_to 'sign in', new_user_session_path, class: 'button has-border has-text-primary' %>

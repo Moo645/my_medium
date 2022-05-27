@@ -6,4 +6,6 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :story
 
+  # Validations
+  validates :content, presence: true
 end
