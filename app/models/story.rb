@@ -1,11 +1,14 @@
 class Story < ApplicationRecord
-  acts_as_paranoid
   include StoryStateMachine
+
+  # Gems settings
+  acts_as_paranoid
   extend FriendlyId
   friendly_id :slug_candidate, use: :slugged
 
   # Relationships
   belongs_to :user
+  has_many :comment
   has_one_attached :cover_image
 
   # validations
@@ -17,7 +20,7 @@ class Story < ApplicationRecord
   # scope :story_show, ->{ Story.friendly.find(params[:story_id]) }
 
   # instance methods
-  # babosa init / Using Babosa With FriendlyId 4+
+  ## babosa init / Using Babosa With FriendlyId 4+
   def normalize_friendly_id(input)
     input.to_s.to_slug.normalize(transliterations: :russian).to_s
   end

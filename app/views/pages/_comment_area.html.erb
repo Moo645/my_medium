@@ -1,0 +1,12 @@
+<% if user_signed_in? %>
+<section class="comment-editor">
+  <form action="" method="post">
+    <textarea name="" id="" rows="8" cols="40" class="textarea is-small"></textarea>
+    <button type="submit" class="button is-primary is-fullwidth">送出</button>
+  </form>
+  <% else %>
+    <p> Want to comment? </p>
+    <%= link_to 'sign in', new_user_session_path, class: 'button has-border has-text-primary' %>
+    <%= link_to 'sign up', new_user_registration_path, class: 'button has-border has-text-info' %>
+  <% end %>
+</section>
