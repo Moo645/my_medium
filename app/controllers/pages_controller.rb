@@ -7,6 +7,7 @@ class PagesController < ApplicationController
 
   def show
     @comment = @story.comments.new
+    @comments = @story.comments.order(id: :desc)
   end
 
   def user
