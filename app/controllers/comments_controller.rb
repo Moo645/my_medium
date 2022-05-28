@@ -6,7 +6,9 @@ class CommentsController < ApplicationController
     @comment = @story.comments.new(comment_params)
     @comment.user = current_user
 
-    @comment.save
+    unless @comment.save
+      render js: "error happen"
+    end
 
   end
 

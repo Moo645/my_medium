@@ -13,6 +13,7 @@
       <%= simple_format(@story.content) %>
       </p>
       <footer>
+      <i class="fa-solid fa-hands-clapping"></i>
         拍手 108
       </footer>
     </article>
@@ -20,7 +21,9 @@
     <section class="comments">
       <h2>留言</h2>
       <%= render 'comment_area', story: @story, comment: @comment %>
-      <%= render partial: 'comment', collection: @comments %>
+      <section class="comment-list">
+        <%= render partial: 'comment', collection: @comments %>
+      </section>
     </section>
   </section>
 </section>
