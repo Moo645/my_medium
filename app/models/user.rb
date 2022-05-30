@@ -6,11 +6,24 @@ class User < ApplicationRecord
 
   # Relationships
   has_many :stories, dependent: :destroy
-  has_many :comment
+  has_many :follows
   has_one_attached :avatar
 
   # Validations
   validates :username, presence: true, uniqueness: true
 
+  # instance method
+  def follow?(user)
+    follows.exists?(following: user)
+  end
 
+  def follow!(user)
+    if follow?(user)
+      follows.find_by(following: user).destroy!
+      return 'follow'
+    else
+      follows.create(following: user)
+      return 'followed'
+    end
+  end
 end

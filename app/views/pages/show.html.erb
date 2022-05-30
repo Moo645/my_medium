@@ -4,7 +4,13 @@
     <span class="profile">
       <%= avatar(@story.user, size: 50) %>
       <span class="username"><%= @story.user.username %></span>
-      <a href="#" class="follow-button">Follow</a>
+      <span data-controller="user">
+
+        <%= link_to "#", class: 'follow-button', data: { action: 'user#follow', user: @story.user.id, target: 'user.followButton' } do %>
+        <%= (user_signed_in? && current_user.follow?(@story.user))? 'Followed' : 'Follow' %>
+        <% end %>
+
+      </span>
     </span>
     <hr>
     <article class="content">
@@ -13,17 +19,12 @@
       <%= simple_format(@story.content) %>
       </p>
 
-
-
       <footer data-controller="story">
-        <%= link_to "", class: 'clapButton has-text-info is-size-5', data: { action: 'story#addClap', slug: @story.slug } do %>
+        <%= link_to "#", class: 'clapButton has-text-info is-size-5', data: { action: 'story#addClap', slug: @story.slug } do %>
           <i class="fa-solid fa-hands-clapping" ></i>
           <span data-story-target="clapCount"><%= @story.clap %></span>
         <% end %>
       </footer>
-
-
-
 
     </article>
     <hr>
