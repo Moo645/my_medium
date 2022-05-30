@@ -12,10 +12,19 @@
       <p>
       <%= simple_format(@story.content) %>
       </p>
-      <footer>
-      <i class="fa-solid fa-hands-clapping"></i>
-        拍手 108
+
+
+
+      <footer data-controller="story">
+        <%= link_to "", class: 'clapButton has-text-info is-size-5', data: { action: 'story#addClap', slug: @story.slug } do %>
+          <i class="fa-solid fa-hands-clapping" ></i>
+          <span data-story-target="clapCount"><%= @story.clap %></span>
+        <% end %>
       </footer>
+
+
+
+
     </article>
     <hr>
     <section class="comments">

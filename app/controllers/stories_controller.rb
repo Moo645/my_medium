@@ -1,7 +1,8 @@
 class StoriesController < ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:clap]
   before_action :find_story, only: [:edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:clap]
 
   def index
     @stories = current_user.stories.order(created_at: :desc)
@@ -50,6 +51,18 @@ class StoriesController < ApplicationController
     redirect_to stories_path, notice: '故事刪除成功'
   end
 
+  # custom actions
+
+  def clap
+    if user_signed_in? 
+      @story = Story.friendly.find(params[:id])
+      @story.increment!(:clap) 
+      render json: {status: 'ok', clap: @story.clap}
+    else
+      render json: {status: 'sign_in_first'}
+    end
+  end
+
   private
   
   def find_story
@@ -59,5 +72,5 @@ class StoriesController < ApplicationController
   def story_params
     params.require(:story).permit(:title, :content, :cover_image)
   end
-
+  
 end
