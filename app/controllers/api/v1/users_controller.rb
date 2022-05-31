@@ -1,5 +1,4 @@
-class UsersController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:follow]
+class Api::V1::UsersController < Api::ApiController
   before_action :find_user
 
   def follow
@@ -15,3 +14,4 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 end
+

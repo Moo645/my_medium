@@ -1,20 +1,30 @@
 Rails.application.routes.draw do
   root 'pages#index'
-  
+  # devise
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
   
-  resources :users, only: [] do
-    member do
-      post :follow
+  # api
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [] do
+        member do
+          post :follow
+        end
+      end
+  
+      resources :stories, only: [] do 
+        member do
+          post :clap
+        end
+      end
+
     end
   end
 
+  # crud
   resources :stories do 
-    member do
-      post :clap
-    end
     resources :comments, only: [:create]
   end
   
