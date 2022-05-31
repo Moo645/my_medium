@@ -7,25 +7,31 @@
       <span data-controller="user">
 
         <%= link_to "#", class: 'follow-button', data: { action: 'user#follow', user: @story.user.id, target: 'user.followButton' } do %>
-        <%= (user_signed_in? && current_user.follow?(@story.user))? 'Followed' : 'Follow' %>
+          <%= (user_signed_in? && current_user.follow?(@story.user))? 'Followed' : 'Follow' %>
         <% end %>
-
+        
+        <%= link_to "#", class: 'bookmark-button', data: { action: 'user#bookmark', slug: @story.slug } do %>
+          <% if user_signed_in? &&  current_user.bookmark?(@story) %>
+            <i class="fa-solid fa-bookmark" data-target="user.bookmarkButton"></i>
+          <% else %>
+            <i class="fa-regular fa-bookmark" data-target="user.bookmarkButton"></i>
+          <% end %>
+        <% end %>
       </span>
+
     </span>
     <hr>
     <article class="content">
       <%= cover_image(@story, size: [1000, 500]) %>
       <p>
-      <%= simple_format(@story.content) %>
+        <%= simple_format(@story.content) %>
       </p>
-
       <footer data-controller="story">
         <%= link_to "#", class: 'clapButton has-text-info is-size-5', data: { action: 'story#addClap', slug: @story.slug } do %>
           <i class="fa-solid fa-hands-clapping" ></i>
           <span data-story-target="clapCount"><%= @story.clap %></span>
         <% end %>
       </footer>
-
     </article>
     <hr>
     <section class="comments">
