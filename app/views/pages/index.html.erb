@@ -83,7 +83,7 @@
             <h2 class="title is-4">
               <%= link_to s.title, story_page_path(s.user.username, s), class: 'has-text-grey-dark' %>
             </h2>
-            <p class="content"><%= simple_format(strip_tags(s.content).truncate(200, separator: ' ', omission: " ... #{read_more(s)}")) %></p>
+            <p class="content"><%= simple_format(strip_tags(s.content).truncate(300, separator: ' ', omission: " ... #{read_more(s)}")) %></p>
 
           </div>
           <figure class="media-right">

@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   # api
   namespace :api do
     namespace :v1 do
+
+      post '/upload_image', to: 'utils#upload_image'
+
       resources :users, only: [] do
         member do
           post :follow
