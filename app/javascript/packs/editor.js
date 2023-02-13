@@ -11,12 +11,11 @@ import 'froala-editor/js/plugins/lists.min.js'
 import 'froala-editor/js/plugins/quote.min.js'
 import 'froala-editor/js/plugins/video.min.js'
 
-
-
-
 document.addEventListener('turbolinks:load', function(event) {
+
     let editor = new FroalaEditor('#story_content', {
         language: 'zh_tw',
-        imageUploadURL: '/api/v1/upload_image'
+        imageUploadURL: '/api/v1/upload_image',
+        heightMin: 200,
     })
 })
